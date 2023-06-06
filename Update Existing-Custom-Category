@@ -1,0 +1,38 @@
+describe('Update Existing Custom Category', () => {
+  beforeEach(() => {
+   
+    cy.visit('https://example.com/admin')  
+    cy.get('#username').type('admin') 
+    cy.get('#password').type('password')  
+    cy.get('#login-button').click()
+  })
+  
+  it('Updates an existing custom category', () => {
+    cy.visit('URL')  
+
+ 
+    cy.get('.category-tree').contains('Existing Category').click()  
+    
+
+    cy.get('#status').type('Active')
+    cy.get('#name').type('New Category Name')
+    cy.get('#url-key').type('new-category-url')
+    cy.get('#page-title').type('New Category Page Title')
+    cy.get('#description').type('New Category Description')
+    cy.get('#meta-keywords').type('new, category, keywords')
+    cy.get('#meta-description').type('New category meta description')
+
+    cy.get('#save-button').click()
+
+ 
+    cy.contains('Changes saved successfully')  
+  })
+
+  it('Updates an existing category\'s product attributes', () => {
+
+  })
+
+  it('Attempts to save an existing category with invalid details', () => {
+
+  })
+})
