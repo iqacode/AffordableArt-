@@ -1,0 +1,30 @@
+describe('Administrator Creates a New Custom Category', () => {
+  before(() => {
+    
+    cy.login('admin_username', 'admin_password');
+  });
+
+  it('Administrator navigates to custom categories management page', () => {
+    cy.visit('URL');
+  });
+
+  it('Administrator creates a new custom category', () => {
+    cy.get('#createCategoryButton').click();  
+
+    //  category details
+    cy.get('#categoryNameInput').type('New Category Name');  
+    cy.get('#categoryURLInput').type('new-category-url');  
+    cy.get('#pageTitleInput').type('New Category Page Title'); 
+    cy.get('#descriptionInput').type('This is a new category');  
+    cy.get('#metaKeywordsInput').type('new, category, keywords');  
+    cy.get('#metaDescriptionInput').type('This is the meta description for the new category');  
+
+    // Submit  
+    cy.get('#saveCategoryButton').click(); 
+  });
+
+  it('New custom category should be saved', () => {
+     
+    cy.get('#confirmationMessage').should('contain', 'Category has been created successfully');  
+  });
+});
