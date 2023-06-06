@@ -1,0 +1,26 @@
+describe('Administrator Reads an Existing Custom Category', () => {
+  before(() => {
+     
+    cy.login('admin_username', 'admin_password');
+  });
+
+  it('Administrator navigates to custom categories management page', () => {
+    cy.visit('/custom_categories_management_page_url');
+  });
+
+  it('Administrator selects an existing custom category from the category tree', () => {
+    cy.get('#categoryTree').within(() => {  
+      cy.get('.categoryNode').first().click();  
+    });
+  });
+
+  it('Administrator reads the custom category details', () => {
+    //  details
+    cy.get('#categoryName').should('have.text', 'Expected Category Name');  
+    cy.get('#categoryURL').should('have.text', 'Expected Category URL');  
+    cy.get('#pageTitle').should('have.text', 'Expected Page Title');  
+    cy.get('#description').should('have.text', 'Expected Description');  
+    cy.get('#metaKeywords').should('have.text', 'Expected Meta Keywords');  
+    cy.get('#metaDescription').should('have.text', 'Expected Meta Description'); 
+  });
+});
